@@ -3,6 +3,17 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .store {
+
+	a {
+		text-decoration: none;
+
+		&:hover {
+			background: none;
+			color: #141;
+		}
+	}
+
+
 	h1 {
 		margin: 0;
 		padding-bottom: 0.5em;
@@ -51,18 +62,32 @@
 			margin-right: 3em;
 		}
 	}
-	.top_bar {
-		margin-top: 10px;
-		margin-bottom: 10px;
-		background-color: gray;
-		a {
-			&:visited {
-				color: white;
+	.search_bar {
+		.search_input {
+			padding: 5px;
+			width: 400px;
+			border: 1px solid #141;
+			border-radius: 3px;
+
+			&:focus {
+				background-color: #9C9;
 			}
 
-			&:link {
-				color: white;
+		}
+
+		.search_button {
+
+			padding: 5px;
+			border: none;
+			background-color: #141;
+			color: #BFB;
+			border-radius: 3px;
+
+			&:hover {
+				background-color: #9C9;
+				color: #141;
 			}
+
 		}
 	}
 }

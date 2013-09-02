@@ -1,9 +1,12 @@
-
+<% if notice %>
+	<div id="notice"> <%= notice %> </div>
+<% end %>
 <% if @orders %>
 <h1>Listing orders</h1>
 <div>
 </div>
-<table>
+<div class="list_table">
+<table cellpadding="0" cellspacing="0">
 	<thead>
 		<tr>
 			<th>Order Id</th>
@@ -13,8 +16,11 @@
 			<th>Pay type</th>
 			<th>Status</th>
 			<th></th>
+			<% if session[:user_type] == 'admin' %>
 			<th></th>
 			<th></th>
+			<th></th>
+			<% end %>
 		</tr>
 	</thead>
 
@@ -28,6 +34,7 @@
 				<td><%= order.email %></td>
 				<td><%= order.pay_type %></td>
 				<td><%= order.status %></td>
+				<td><%= link_to 'Detail', order %>
 
 				<% if session[:user_type] == 'admin' %>
 					<td><%= link_to 'Show', order %></td>
@@ -38,6 +45,7 @@
 		<% end %>
 	</tbody>
 </table>
+</div>
 <br>
 <p><%= will_paginate @orders %></p>
 <% else %>

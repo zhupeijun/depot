@@ -34,7 +34,7 @@
 <table>
 	<thead>
 		<th>Name</th>
-		<th></th>
+		<th>Email</th>
 		<th></th>
 		<th></th>
 	</thead>
@@ -43,6 +43,7 @@
 		<% @customer_users.each do |cu| %>
 			<tr>
 				<td><%= cu.name %></td>
+        <td><%= cu.email %></td>
 				<td><%= link_to 'Edit', edit_customer_user_path(cu) %></td>
 				<td><%= link_to 'Destroy', cu,  method: :delete, data: { confirm: 'Are you sure?' } %></td>
 			</tr>

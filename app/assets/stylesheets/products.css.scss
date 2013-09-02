@@ -49,13 +49,23 @@
 	}
 
 
-	.product_img {
-		border: 3px solid gray;
-		border-radius: 5px;
-	}
-
 	.comments_area {
 		border-top: 1px dashed gray;
+
+		.comment_item {
+			margin-top: 10px;
+			background-color: #efe;
+			//border-bottom: 1px solid #9c9;
+			//border-radius: 5px;
+			padding: 5px;
+		}
+
+		.comment_user {
+			text-align: center;
+			vertical-align: middle;
+			background-color: #9C9;
+			padding: 10px;
+		}
 
 	}
 

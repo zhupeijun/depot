@@ -26,12 +26,38 @@
 }
 
 #notice {
-	color: #000 !important;
-	border: 2px solid red;
+	color: #141 !important;
+	border: 1px solid #141;
 	padding: 1em;
 	margin-bottom: 2em;
-	background-color: #F0F0F0;
+	background-color: #9C9;
 	font: bold smaller sans-serif;
+	border-radius: 5px;
+	text-align: center;
+}
+
+#header {
+	background-color: #141;
+	color: #9C9;
+	text-align: right;
+	padding-left: 30px;
+	padding-right: 30px;
+
+	a {
+
+		color: #BFB;
+
+		&:link{
+			color: #BFB;
+		}
+		&:visited {
+			color: #BFB;
+		}
+
+		&:hover {
+			color: yellow;
+		}
+	}
 }
 
 #columns {
@@ -105,6 +131,10 @@
 
 		select, textarea, input {
 			margin-left: 0.5em;
+		}
+
+		.input_field {
+			width: 250px;
 		}
 
 		.submit {

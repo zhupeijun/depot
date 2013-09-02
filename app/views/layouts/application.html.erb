@@ -7,6 +7,25 @@
 	<%= csrf_meta_tags %>
 </head>
 <body class='<%= controller.controller_name %>'>
+	<div id="header"> 
+		<div id="menu">
+			<% if session[:user_id] == nil %>
+				<%= link_to 'login', login_path %>
+			<% end %>
+			<% if session[:user_type] == 'admin' %>
+				<% user = User.find_by_id(session[:user_id]) %>
+				<%= link_to "#{user.name}",  edit_user_path(session[:user_id])  %>
+				<%= link_to 'Logout', admin_logout_path, method: :delete %>|
+				<%= link_to 'My Orders', orders_path %>
+			<% end %>
+			<% if session[:user_type] == 'user' %>
+				<% user = CustomerUser.find_by_id(session[:user_id]) %>
+				<%= link_to "#{user.name}",  edit_customer_user_path(session[:user_id])  %>
+				<%= link_to 'Logout', logout_path, method: :delete %>|
+				<%= link_to 'My Orders', orders_path %>
+			<% end %>
+		</div>
+	</div>
 	<div id="banner">
 		<%= link_to store_url do %>
 			<%= image_tag("logo.png") %>
@@ -27,28 +46,6 @@
 				<li><a href="http://www.../news">News</a></li>
 				<li><a href="http://www.../contract">Contact</a></li>
 			</ul>
-
-			<% if session[:user_id] == nil %>
-				<ul>
-					<li><%= link_to 'login', login_path %></li>
-				</ul>
-			<% end %>
-			<% if session[:user_type] == 'admin' %>
-				<ul>
-					<li><%= link_to 'Orders', orders_path(:type => 'admin')%></li>
-					<li><%= link_to 'Products', products_path %></li>
-					<li><%= link_to 'Users', users_path %></li>
-					<li><%= button_to 'Logout', admin_logout_path, method: :delete %></li>
-				</ul>
-			<% end %>
-			<% if session[:user_type] == 'user' %>
-				<% user = CustomerUser.find_by_id(session[:user_id]) %>
-				<ul>
-					<li><%= link_to "#{user.name}",  edit_customer_user_path(session[:user_id])  %></li>
-					<li><%= link_to "Orders", orders_path(:type => 'user') %></li>
-					<li><%= button_to 'Logout', logout_path, method: :delete %></li>
-				</ul>
-			<% end %>
 		</div>
 		<div id="main">
 			<%= yield %>

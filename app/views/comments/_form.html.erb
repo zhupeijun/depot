@@ -1,25 +1,20 @@
-<%= form_for(@comment) do |f| %>
-  <% if @comment.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
+<%= form_tag comment_path, method: :put do %>
 
-      <ul>
-      <% @comment.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <%= hidden_field_tag :product_id, @comment.product_id %>
+  <%= hidden_field_tag :order_id, @comment.order_id %>
+  <%= hidden_field_tag :date, Date.current %>
+  <%= hidden_field_tag :user_id, session[:user_id] %>
 
-  <div class="field">
-    <%= f.label :comment %><br>
-    <%= f.text_area :comment, rows: 10, cols: 50 %>
-  </div>
-  <div class="field">
-    <%= f.label :score %><br>
-    <%= f.number_field :score %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  <strong>Comment:</strong><br>
+  <%= text_area_tag :comment, @comment.comment, rows: 10, cols: 50 %><br>
+  <strong>Score</strong><br>
+
+
+  <%= radio_button_tag :score, 1 , @comment.score == 1 ? true : false %>1
+  <%= radio_button_tag :score, 2 , @comment.score == 2 ? true : false %>2
+  <%= radio_button_tag :score, 3 , @comment.score == 3 ? true : false %>3
+  <%= radio_button_tag :score, 4 , @comment.score == 4 ? true : false %>4
+  <%= radio_button_tag :score, 5 , @comment.score == 5 ? true : false %>5
+
+  <%= submit_tag 'Submit' %>
 <% end %>

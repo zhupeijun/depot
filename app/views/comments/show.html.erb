@@ -1,14 +1,7 @@
+
+<% if notice %>
 <p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Product:</strong>
-  <%= @comment.product_id %>
-</p>
-
-<p>
-  <strong>Order:</strong>
-  <%= @comment.order_id %>
-</p>
+<% end %>
 
 <p>
   <strong>Comment:</strong>
@@ -25,5 +18,4 @@
   <%= @comment.score %>
 </p>
 
-<%= link_to 'Edit', edit_comment_path(@comment) %> |
-<%= link_to 'Back', comments_path %>
+<%= link_to 'Edit', edit_comment_path(@comment) %>

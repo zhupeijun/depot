@@ -11,7 +11,7 @@
 		</td>
 		<td>
 			<div>
-  			<strong>Title:</strong>
+				<strong>Title:</strong>
 				<%= @product.title %>
 			</div>
 			<div>
@@ -28,41 +28,58 @@
 </table>
 
 <p>
-  <strong>Description:</strong>
-  <%= @product.description.html_safe %>
+	<strong>Description:</strong>
+	<%= @product.description.html_safe %>
 </p>
 
 <% if session[:user_type] == 'admin' %>
-	<%= link_to 'Edit', edit_product_path(@product) %> |
-<% end %>
-<%= link_to 'Back', products_path %>
-
-<% if Comment.find_by_user_id(session[:user_id]) == nil %>
-<div>
-	<%= form_tag comments_path do %>
-		<%= hidden_field_tag :product_id, @product.id %>
-		<%= hidden_field_tag :user_id, session[:user_id] %>
-		<%= label_tag 'Comment:' %><br>
-		<%= text_area_tag :comment %><br>
-		<%= submit_tag 'Submit' %>
-	<% end %>
-</div>
+	<%= link_to 'Edit', edit_product_path(@product) %> 
 <% end %>
 
+<% if @comment_list %>
 <div class="comments_area">
-<table>
-	<% Comment.where("product_id = #{@product.id}").each do |c| %>
-		<tr>
-			<td>
-				<strong><%= CustomerUser.find(3).name %></strong>,
-			</td>
-			<td>
-				<%= c.comment %>
-			</td>
-		</tr>
+<h2>Comment List</h2>
+	<% @comment_list.each do |c| %>
+		<div class="comment_item">
+			<table width="100%">
+				<tr>
+					<td width="100px" class="comment_user">
+						<%= CustomerUser.find(c.user_id).name %>
+					</td>
+					<td valign="middle">
+						<table>
+							<tr>
+								<td align="right">
+									SCORE:
+								</td>
+								<td>
+									<div class="comment_score"><%= c.score %></div>
+								</td>
+							</tr>
+							<tr>
+								<td align="right">
+									COMMENT:
+								</td>
+								<td>
+									<div class="comment_content"><%= c.comment %></div>
+								</td>
+							</tr>
+							<tr>
+								<td align="right">
+									DATE:
+								</td>
+								<td>
+									<div class="comment_date"><%= c.date %></div>
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+		</div>
 	<% end %>
-</table>
 </div>
+<% end %>
 
 
 

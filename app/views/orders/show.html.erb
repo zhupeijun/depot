@@ -25,27 +25,41 @@
 </table>
 
 <div class="product_table">
-<table>
-	<thead>
-		<th>Product Id</th>
-		<th>Product Name</th>
-		<th>Count</th>
-		<th></th>
-	</thead>
-	<tbody>
-	<% @order.line_items.each do |l| %>
-	<tr>
-		<td><%= l.product_id %></td>
-		<td><%= Product.find(l.product_id).title %></td>
-		<td><%= l.quantity %></td>
-		<td><%= link_to 'comment this product', new_comment_path(:product_id => l.product_id, :order_id =>  @order.id) %> </td>
-	</tr>
-	<% end %>
-	</tbody>
-</table>
+	<div class="list_table">
+		<table cellpadding="0", cellspacing="0">
+			<thead>
+				<th>Product Id</th>
+				<th>Product Name</th>
+				<th>Count</th>
+				<% if @order.status == 'Accepted' %>
+				<th></th>
+				<% end %>
+			</thead>
+			<tbody>
+			<% @order.line_items.each do |l| %>
+			<tr>
+				<td><%= l.product_id %></td>
+				<td><%= Product.find(l.product_id).title %></td>
+				<td><%= l.quantity %></td>
+				<% if @order.status == 'Accepted' %>
+					<td>
+						<% fc = Comment.where("product_id = '#{l.product_id}' and order_id = '#{@order.id}' and user_id = '#{session[:user_id]}'").first() %>
+						<% if fc %>
+							<%= link_to 'Edit Comment', edit_comment_path(fc) %>
+						<% else %>
+							<%= link_to 'Comment', new_comment_path(:product_id => l.product_id, :order_id =>  @order.id) %>
+						<% end %> 
+					</td>
+				<% end %>
+			</tr>
+			<% end %>
+			</tbody>
+		</table>
+	</div>
 </div>
-
+<div>
+	<h3>Total:<span class="total_price"><%= number_to_currency(@order.total_price) %></span></h3>
+</div>
 <% if session[:user_type] == 'admin' %>
 	<%= link_to 'Edit', edit_order_path(@order) %> |
 <% end %>
-<%= link_to 'Back', orders_path %>

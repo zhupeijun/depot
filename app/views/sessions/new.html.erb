@@ -9,29 +9,35 @@
 				<tr>
 					<td>
 						<%= form_tag do %>
-							<div>
-								<%= label_tag :name, 'Name:' %>
-								<%= text_field_tag :name, params[:name] %>
-							</div>
-
-							<div>
-								<%= label_tag :password, 'Password:' %>
-								<%= password_field_tag :password, params[:password] %>
-							</div>
-
-							<div>
-								<%= submit_tag "Login" %>
-							</div>
+							<table>
+								<tr>
+									<td>
+										<%= label_tag :name, 'Name:' %>
+									</td>
+									<td>
+										<%= text_field_tag :name, params[:name],  :class => "input_field" %>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<%= label_tag :password, 'Password:' %>
+									</td>
+									<td>
+										<%= password_field_tag :password, params[:password], :class => "input_field" %>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<%= submit_tag "Login" %>
+									</td>
+									<td>
+										<%= link_to 'Register', new_customer_user_path %>
+									</td>
+								</tr>
+							</table>
 						<% end %>
 					</td>
-					<td>
-						<div style="margin-left: 50px">
-							<h1>No Account?</h1>
-							<%= link_to 'Register', new_customer_user_path %>
-						</div>
-					</td>
 				</tr>
-				
 			</table>
 			
 

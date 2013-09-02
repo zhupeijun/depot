@@ -5,8 +5,37 @@
 
 .orders {
 	.product_table {
-		border-top: 1px dashed gray;
+		border-top: 1px dashed #141;
+		border-bottom: 1px dashed #141;
+		padding-top: 10px;
+		padding-bottom: 10px;
 	}
+
+	.list_table {
+
+		table {
+			border-left: 1px solid #9C9;
+			border-bottom: 1px solid #9C9;
+		}
+
+		th {
+			text-align: center;
+			padding: 5px;
+			border-right: 1px solid #9C9;
+			border-top: 1px solid #9C9;
+			background-color: #9C9;
+			color: #141;
+		}
+
+		td {
+			text-align: center;
+			padding: 5px;
+			border-right: 1px solid #9C9;
+			border-top: 1px solid #9C9;
+		}
+
+	}
+
 }
 
 

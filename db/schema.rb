@@ -64,7 +64,7 @@ ActiveRecord::Schema.define(version: 20130829114157) do
     t.decimal  "price",        precision: 8, scale: 2
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "selled_count"
+    t.integer  "selled_count",                         default: 0
   end
 
   create_table "users", force: true do |t|

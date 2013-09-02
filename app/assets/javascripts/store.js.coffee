@@ -3,7 +3,7 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 
-$ ->
-	$('.store .entry > img').click ->
-		$(this).parent().find(':submit').click()
+#$ ->
+#	$('.store .entry > img').click ->
+#		$(this).parent().find(':submit').click()
 	

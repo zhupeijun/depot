@@ -62,6 +62,7 @@ class OrdersController < ApplicationController
 		@order.customer_user_id = user.id
 		@order.name = user.name
 		@order.email = user.email
+		@order.status = 'Padding'
 
 		@order.add_line_items_from_cart(current_cart)
 
@@ -94,7 +95,7 @@ class OrdersController < ApplicationController
 	def update
 		respond_to do |format|
 			if @order.update(order_params)
-				format.html { redirect_to @order, notice: 'Order was successfully updated.' }
+				format.html { redirect_to orders_path, notice: 'Your order was successfully updated.' }
 				format.json { head :no_content }
 			else
 				format.html { render action: 'edit' }

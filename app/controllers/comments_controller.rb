@@ -15,7 +15,25 @@ class CommentsController < ApplicationController
 
   # GET /comments/new
   def new
-    @comment = Comment.new
+    @error = nil
+
+    order = Order.find_by_id(params[:order_id])
+
+    if order 
+      if order.customer_user_id == session[:user_id] and order.status == 'Accepted' 
+        if Comment.where("product_id = '#{params[:product_id]}' and order_id = '#{params[:order_id]}'").first()
+          @error = "You have commented!" 
+        else 
+          if order.line_items.find_by_product_id(params[:product_id]) == nil
+            @error = "Your order does not have this product!"
+          end
+        end
+      else
+        @error = "Your order have mistake!" 
+      end
+    else 
+      @error = "You have not buy this product!"
+    end 
   end
 
   # GET /comments/1/edit
@@ -29,8 +47,8 @@ class CommentsController < ApplicationController
 
     respond_to do |format|
       if @comment.save
-				format.html { render json: comment_params }	
-        #format.html { redirect_to @comment, notice: 'Comment was successfully created.' }
+				#format.html { render json: comment_params }	
+        format.html { redirect_to @comment, notice: 'Thanks for your comment!' }
         format.json { render action: 'show', status: :created, location: @comment }
       else
         format.html { render action: 'new' }

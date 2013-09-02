@@ -1,5 +1,26 @@
 <h1>New comment</h1>
+<% if @error %>
+<%= @error %>
+<% else %>
+<%= form_tag comments_path do %>
+	<%= hidden_field_tag :product_id, params[:product_id] %>
+	<%= hidden_field_tag :order_id, params[:order_id] %>
+	<%= hidden_field_tag :date, Date.current %>
+	<%= hidden_field_tag :user_id, session[:user_id] %>
 
-<%= render 'form' %>
+	<strong>Comment:</strong><br>
+	<%= text_area_tag :comment,'', rows: 10, cols: 50 %><br>
+	<strong>Score</strong><br>
 
-<%= link_to 'Back', comments_path %>
+	<%= radio_button_tag :score, 1 , false %>1
+	<%= radio_button_tag :score, 2 , false %>2
+	<%= radio_button_tag :score, 3 , false %>3
+	<%= radio_button_tag :score, 4 , false %>4
+	<%= radio_button_tag :score, 5 , true %>5
+
+	<br>
+
+	<%= submit_tag 'Submit' %>
+
+<% end %>
+<% end %>
