@@ -1,0 +1,51 @@
+<% if notice %>
+	<p id="notice"><%= notice %></p>
+<% end %>
+<table>
+	<tr>
+		<td><strong>Name:</strong></td>
+		<td><%= @order.name %></td>
+	</tr>
+	<tr>
+  	<td><strong>Address:</strong></td>
+ 		<td> <%= @order.address %></td>
+	</tr>
+	<tr>
+		<td><strong>Email:</strong></td>
+		<td><%= @order.email %></td>
+	</tr>
+	<tr>
+		<td><strong>Pay type:</strong></td>
+		<td> <%= @order.pay_type %></td>
+	</tr>
+	<tr>
+		<td><strong>Status:</strong></td>
+		<td><%= @order.status %></td>
+	</tr>
+</table>
+
+<div class="product_table">
+<table>
+	<thead>
+		<th>Product Id</th>
+		<th>Product Name</th>
+		<th>Count</th>
+		<th></th>
+	</thead>
+	<tbody>
+	<% @order.line_items.each do |l| %>
+	<tr>
+		<td><%= l.product_id %></td>
+		<td><%= Product.find(l.product_id).title %></td>
+		<td><%= l.quantity %></td>
+		<td><%= link_to 'comment this product', new_comment_path(:product_id => l.product_id, :order_id =>  @order.id) %> </td>
+	</tr>
+	<% end %>
+	</tbody>
+</table>
+</div>
+
+<% if session[:user_type] == 'admin' %>
+	<%= link_to 'Edit', edit_order_path(@order) %> |
+<% end %>
+<%= link_to 'Back', orders_path %>

@@ -1,0 +1,40 @@
+<% if notice %>
+<p id="notice"><%= notice %></p>
+<% end %>
+<h1>Your Pragmatic Catalog</h1>
+<div class="top_bar">
+	<table width="100%">
+		<tr>
+			<td>
+				sorted by: 
+				<%= link_to 'selled count', store_url(:order_by => 'selledcount'), method: :get %> | price 
+				<%= link_to 'desc', store_url(:order_by => 'pricedesc'), method: :get %>,
+				<a href="/?order_by=priceasc">asc</a>|
+				<a href="/?order_by=default" >default</a> 
+			</td>
+			<td align="right">
+				<%= form_tag store_url, method: :get do %>
+					<%= text_field_tag :search_key_words, params[:search_key_words], :value => params[:search_key_words] %>
+					<%= submit_tag 'Search' %>
+				<% end %>
+			</td>
+		</tr>
+	</table>
+</div>
+<% @products.each do |product| %>
+	<div class="entry">
+		<%= image_tag(product.image_url) %>
+		<h3><%= link_to "#{product.title}", product %></h3>
+		<p><%= sanitize(product.description) %></p>
+		<div class="price_line">
+			<span class="price"> 
+				<%= number_to_currency(product.price) %>
+				<%= button_to 'Add to Cart', 
+					line_items_path(product_id: product),
+					remote: true %>
+				<span> <%= product.selled_count %></span>
+			</span>
+		</div>
+	</div>
+<% end %>
+	
