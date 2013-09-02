@@ -1,0 +1,54 @@
+<% if notice %>
+	<p id="notice"><%= notice %></p>
+<% end %>
+
+
+<h1>Admin User</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.name %></td>
+        <td><%= link_to 'Edit', edit_user_path(user) %></td>
+        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'New User', new_user_path %>
+
+<br>
+
+<h1>Customer User</h1>
+
+<table>
+	<thead>
+		<th>Name</th>
+		<th></th>
+		<th></th>
+		<th></th>
+	</thead>
+
+	<tbody>
+		<% @customer_users.each do |cu| %>
+			<tr>
+				<td><%= cu.name %></td>
+				<td><%= link_to 'Edit', edit_customer_user_path(cu) %></td>
+				<td><%= link_to 'Destroy', cu,  method: :delete, data: { confirm: 'Are you sure?' } %></td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
+
+
+<%= link_to 'New User', new_customer_user_path %>

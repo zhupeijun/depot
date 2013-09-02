@@ -1,0 +1,46 @@
+
+<% if @orders %>
+<h1>Listing orders</h1>
+<div>
+</div>
+<table>
+	<thead>
+		<tr>
+			<th>Order Id</th>
+			<th>Name</th>
+			<th>Address</th>
+			<th>Email</th>
+			<th>Pay type</th>
+			<th>Status</th>
+			<th></th>
+			<th></th>
+			<th></th>
+		</tr>
+	</thead>
+
+	<tbody>
+		
+		<% @orders.each do |order| %>
+			<tr>
+				<td><%= link_to "#{order.id}", order %></td>
+				<td><%= order.name %></td>
+				<td><%= order.address %></td>
+				<td><%= order.email %></td>
+				<td><%= order.pay_type %></td>
+				<td><%= order.status %></td>
+
+				<% if session[:user_type] == 'admin' %>
+					<td><%= link_to 'Show', order %></td>
+					<td><%= link_to 'Edit', edit_order_path(order) %></td>
+					<td><%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+				<% end %>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
+<br>
+<p><%= will_paginate @orders %></p>
+<% else %>
+<h1>No required orders</h1>
+<% end %>
+
