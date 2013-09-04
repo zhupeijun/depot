@@ -1,0 +1,60 @@
+cn:
+
+ layouts:
+  application: 
+   title: "编程图书网上书店"
+   home: "书店主页"
+   questions: "疑难问题"
+   news: "相关新闻"
+   contact: "联系我们"
+   
+ store:
+  index:
+   add: "加入购物车"
+   selled: "卖出"
+   score: "评分"
+ 
+ carts:
+  cart:
+   title: "您的购物车"
+   empty: "清空"
+   checkout: "结算"
+ 
+ number: 
+  currency:
+   format:
+    unit: "￥"
+    precision: 2
+    separator: "."
+    delimiter: ","
+    format: "%n&nbsp;%u"
+
+ orders:
+  new:
+   legend: "请输入您的信息"
+  form:
+   address: "地址"
+   pay_type: "支付方式"
+   pay_prompt: "请选择一个支付方式"
+   submit: "提交"
+
+ activerecord:
+  models:
+   order: "订单"
+  attributes:
+   order:
+    address: "地址"
+    pay_type: "支付类型"
+  errors:
+   messages:
+    inclusion: "没有包含在列表中"
+    blank: "不能为空"
+
+ errors:
+  template:
+   body: "Body错误"
+   header:
+    one: "一个错误%{model}"
+    other: "%{count}错误%{model}"
+
+ thanks: "感谢您此次购买！"

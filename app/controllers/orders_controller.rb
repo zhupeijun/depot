@@ -79,7 +79,7 @@ class OrdersController < ApplicationController
 				session[:cart_id] = nil
 				OrderNotifier.received(@order).deliver
 				format.html { redirect_to orders_path, 
-					notice: 'Thanks for your order' }
+					notice: I18n.t('.thanks') }
 				format.json { render action: 'show', 
 					status: :created, location: @order }
 			else

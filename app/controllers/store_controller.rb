@@ -3,27 +3,32 @@ class StoreController < ApplicationController
 	skip_before_filter :admin_authorize
 	def index
 
-		@products = nil
-
-
-		if params[:search_key_words] == nil 
-			sp = Product.all
+		if params[:set_locale]
+			redirect_to store_path(locale: params[:set_locale])
 		else 
-			sp = Product.where("title like '%#{params[:search_key_words]}%' or description like '%#{params[:search_key_words]}%'")
+
+			@products = nil
+
+
+			if params[:search_key_words] == nil 
+				sp = Product.all
+			else 
+				sp = Product.where("title like '%#{params[:search_key_words]}%' or description like '%#{params[:search_key_words]}%'")
+			end
+
+
+
+			if params[:order_by] == 'selledcount'
+				@products = sp.order("selled_count desc")
+			elsif params[:order_by] == 'pricedesc'
+				@products = sp.order("price desc")
+			elsif params[:order_by] == 'priceasc'
+				@products = sp.order("price asc")
+			else 
+				@products = sp.order(:title)
+			end
+			
+			@cart = current_cart
 		end
-
-
-
-		if params[:order_by] == 'selledcount'
-			@products = sp.order("selled_count desc")
-		elsif params[:order_by] == 'pricedesc'
-			@products = sp.order("price desc")
-		elsif params[:order_by] == 'priceasc'
-			@products = sp.order("price asc")
-		else 
-			@products = sp.order(:title)
-		end
-		
-		@cart = current_cart
 	end
 end

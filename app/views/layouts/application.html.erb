@@ -27,10 +27,18 @@
 		</div>
 	</div>
 	<div id="banner">
+		<%= form_tag store_path, method: :get, class: 'locale' do %>
+			<%= select_tag 'set_locale',
+				options_for_select(LANGUAGES, I18n.locale.to_s),
+				onchange: 'this.form.submit()' %>
+
+		<%= submit_tag 'submit' %>
+		<%= javascript_tag "$('.locale input').hide()" %>
+		<% end %>
 		<%= link_to store_url do %>
 			<%= image_tag("logo.png") %>
 		<% end %>
-		<%= @page_title || "Progmatic Bookshelf" %>
+		<%= @page_title || t('.title') %>
 	</div>
 	<div id="columns">
 		<div id="side">
@@ -41,10 +49,10 @@
 			<% end %>
 
 			<ul>
-				<li><a href="http://localhost:3000">Home</a></li>
-				<li><a href="http://www.../faq">Questions</a></li>
-				<li><a href="http://www.../news">News</a></li>
-				<li><a href="http://www.../contract">Contact</a></li>
+				<li><a href="http://localhost:3000"><%= t('.home')%></a></li>
+				<li><a href="http://www.../faq"><%= t('.questions') %></a></li>
+				<li><a href="http://www.../news"><%= t('.news') %></a></li>
+				<li><a href="http://www.../contract"><%= t('.contact') %></a></li>
 			</ul>
 		</div>
 		<div id="main">
