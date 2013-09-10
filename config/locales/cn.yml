@@ -7,19 +7,39 @@ cn:
    questions: "疑难问题"
    news: "相关新闻"
    contact: "联系我们"
-   
+   login: "登陆"
+   logout: "退出"
+   myorders: "我的订单"
+
  store:
   index:
    add: "加入购物车"
    selled: "卖出"
    score: "评分"
- 
+   search: "搜索"
+
  carts:
   cart:
    title: "您的购物车"
    empty: "清空"
    checkout: "结算"
- 
+
+ products:
+  show:
+   add: "加入购物车"
+   title: "标题"
+   price: "价格"
+   description: "描述"
+   comments: "评论列表"
+
+ sessions: 
+  new:
+   legend: "请登录"
+   name: "用户名"
+   password: "密码"
+   login: "登陆"
+   register: "注册"
+
  number: 
   currency:
    format:
@@ -37,6 +57,30 @@ cn:
    pay_type: "支付方式"
    pay_prompt: "请选择一个支付方式"
    submit: "提交"
+  index:
+   orderid: "订单编号"
+   name: "用户名"
+   address: "地址"
+   email: "邮箱"
+   paytype: "支付类型"
+   status: "状态"
+   edit: "编辑"
+   detail: "查看"
+   destroy: "删除"
+   listorders: "我的订单"
+  show:
+   name: "用户名"
+   address: "地址"
+   email: "邮箱"
+   paytype: "支付类型"
+   status: "状态"
+   edit: "编辑"
+   productid: "商品编号"
+   productname: "商品名字"
+   count: "数量"
+   editcomment: "编辑评论"
+   comment: "评论"
+   total: "总共"
 
  activerecord:
   models:

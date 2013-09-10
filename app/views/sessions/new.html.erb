@@ -4,7 +4,7 @@
 	<% end %>
 
 		<fieldset>
-		<legend>Please Log In</legend>
+		<legend><%= t('.legend') %></legend>
 			<table>
 				<tr>
 					<td>
@@ -12,7 +12,7 @@
 							<table>
 								<tr>
 									<td>
-										<%= label_tag :name, 'Name:' %>
+										<%= label_tag :name, t('.name')+':' %>
 									</td>
 									<td>
 										<%= text_field_tag :name, params[:name],  :class => "input_field" %>
@@ -20,7 +20,7 @@
 								</tr>
 								<tr>
 									<td>
-										<%= label_tag :password, 'Password:' %>
+										<%= label_tag :password, t('.password') + ':' %>
 									</td>
 									<td>
 										<%= password_field_tag :password, params[:password], :class => "input_field" %>
@@ -28,10 +28,10 @@
 								</tr>
 								<tr>
 									<td>
-										<%= submit_tag "Login" %>
+										<%= submit_tag t('.login') %>
 									</td>
 									<td>
-										<%= link_to 'Register', new_customer_user_path %>
+										<%= link_to t('.register'), new_customer_user_path %>
 									</td>
 								</tr>
 							</table>

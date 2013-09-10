@@ -11,15 +11,15 @@
 		</td>
 		<td>
 			<div>
-				<strong>Title:</strong>
+				<strong><%= t('.title') %>:</strong>
 				<%= @product.title %>
 			</div>
 			<div>
-				<strong>Price:</strong>
+				<strong><%= t('.price') %>:</strong>
 				<%= @product.price %>
 			</div>
 			<div>
-				<%= button_to 'Add To Cart', 
+				<%= button_to t('.add'), 
 						line_items_path(product_id: @product),
 						remote: true %>
 			</div>
@@ -28,7 +28,7 @@
 </table>
 
 <p>
-	<strong>Description:</strong>
+	<strong><%= t('.description') %>:</strong>
 	<%= @product.description.html_safe %>
 </p>
 
@@ -38,7 +38,7 @@
 
 <% if @comment_list %>
 <div class="comments_area">
-<h2>Comment List</h2>
+<h2><%= t('.comments') %></h2>
 	<% @comment_list.each do |c| %>
 		<div class="comment_item">
 			<table width="100%">

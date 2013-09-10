@@ -13,7 +13,7 @@ class StoreController < ApplicationController
 			if params[:search_key_words] == nil 
 				sp = Product.all
 			else 
-				sp = Product.where("title like '%#{params[:search_key_words]}%' or description like '%#{params[:search_key_words]}%'")
+				sp = Product.where("title like ? or description like ?", "%" + params[:search_key_words] + "%", "%" + params[:search_key_words] + "%")
 			end
 
 

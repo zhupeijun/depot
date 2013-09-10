@@ -6,19 +6,39 @@ en:
    questions: "Questions"
    news: "News"
    contact: "Contact"
+   login: "Login"
+   logout: "Logout"
+   myorders: "My Orders"
 
  store:
   index:
    add: "Add to Cart"
    selled: "Selled"
    score: "Score"
-   
+   search: "Search"
+
  carts:
   cart:
    title: "Your Cart"
    empty: "Empty Cart"
    checkout: "Checkout"
-   
+
+ products:
+  show:
+   add: "Add to Cart"
+   title: "Title"
+   price: "Price"
+   description: "Description"
+   comments: "Comment List"
+
+ sessions: 
+  new:
+   legend: "Please Log In"
+   name: "Name"
+   password: "Password"
+   login: "Login"
+   register: "Register"
+
  number:
   currency:
    format:
@@ -36,5 +56,29 @@ en:
    pay_type: "Pay with"
    pay_prompt: "Select a payment method"
    submit: "Place Order"
+  index:
+   orderid: "Order Id"
+   name: "Name"
+   address: "Address"
+   email: "Email"
+   paytype: "Pay Type"
+   status: "Status"
+   edit: "Edit"
+   detail: "Detail"
+   destroy: "Destroy"
+   listorders: "Listing orders"
+  show:
+   name: "Name"
+   address: "Address"
+   email: "Email"
+   paytype: "Pay Type"
+   status: "Status"
+   edit: "Edit"
+   productid: "Product Id"
+   productname: "Product Name"
+   count: "Count"
+   editcomment: "Edit Comment"
+   comment: "Comment"
+   total: "Total"
 
  thanks: "Thank you for your order"

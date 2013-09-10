@@ -10,19 +10,19 @@
 	<div id="header"> 
 		<div id="menu">
 			<% if session[:user_id] == nil %>
-				<%= link_to 'login', login_path %>
+				<%= link_to t('.login'), login_path %>
 			<% end %>
 			<% if session[:user_type] == 'admin' %>
 				<% user = User.find_by_id(session[:user_id]) %>
 				<%= link_to "#{user.name}",  edit_user_path(session[:user_id])  %>
-				<%= link_to 'Logout', admin_logout_path, method: :delete %>|
-				<%= link_to 'My Orders', orders_path %>
+				<%= link_to t('.logout'), admin_logout_path, method: :delete %>|
+				<%= link_to t('.myorders'), orders_path %>
 			<% end %>
 			<% if session[:user_type] == 'user' %>
 				<% user = CustomerUser.find_by_id(session[:user_id]) %>
 				<%= link_to "#{user.name}",  edit_customer_user_path(session[:user_id])  %>
-				<%= link_to 'Logout', logout_path, method: :delete %>|
-				<%= link_to 'My Orders', orders_path %>
+				<%= link_to t('.logout'), logout_path, method: :delete %>|
+				<%= link_to t('.myorders'), orders_path %>
 			<% end %>
 		</div>
 	</div>

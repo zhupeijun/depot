@@ -9,7 +9,7 @@
 				<%= form_tag store_url, method: :get do %>
 					<%= text_field_tag :search_key_words, params[:search_key_words], :value => params[:search_key_words],
 					 :class => "search_input" %>
-					<%= submit_tag 'Search', :class => "search_button" %>
+					<%= submit_tag t('.search'), :class => "search_button" %>
 				<% end %>
 			</div>
 		</td>
@@ -31,7 +31,7 @@
 								remote: true %>
 							<%= number_to_currency(product.price) %>|
 							<%= t('.selled') %>: <%= product.selled_count %>
-							<% as = Comment.where("product_id = '#{product.id}'").average(:score) %>
+							<% as = Comment.where("product_id = ?", product.id).average(:score) %>
 							<% if as %> |<%= t('.score') %>: <%= sprintf("%0.1f", as) %> <% end %>
 
 						</span>

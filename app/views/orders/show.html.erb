@@ -3,23 +3,23 @@
 <% end %>
 <table>
 	<tr>
-		<td><strong>Name:</strong></td>
+		<td><strong><%= t('.name') %>:</strong></td>
 		<td><%= @order.name %></td>
 	</tr>
 	<tr>
-  	<td><strong>Address:</strong></td>
+  	<td><strong><%= t('.address') %>:</strong></td>
  		<td> <%= @order.address %></td>
 	</tr>
 	<tr>
-		<td><strong>Email:</strong></td>
+		<td><strong><%= t('.email') %>:</strong></td>
 		<td><%= @order.email %></td>
 	</tr>
 	<tr>
-		<td><strong>Pay type:</strong></td>
+		<td><strong><%= t('.paytype') %>:</strong></td>
 		<td> <%= @order.pay_type %></td>
 	</tr>
 	<tr>
-		<td><strong>Status:</strong></td>
+		<td><strong><%= t('.status') %>:</strong></td>
 		<td><%= @order.status %></td>
 	</tr>
 </table>
@@ -28,9 +28,9 @@
 	<div class="list_table">
 		<table cellpadding="0", cellspacing="0">
 			<thead>
-				<th>Product Id</th>
-				<th>Product Name</th>
-				<th>Count</th>
+				<th><%= t('.productid') %></th>
+				<th><%= t('.productname') %></th>
+				<th><%= t('.count') %></th>
 				<% if @order.status == 'Accepted' %>
 				<th></th>
 				<% end %>
@@ -43,11 +43,11 @@
 				<td><%= l.quantity %></td>
 				<% if @order.status == 'Accepted' %>
 					<td>
-						<% fc = Comment.where("product_id = '#{l.product_id}' and order_id = '#{@order.id}' and user_id = '#{session[:user_id]}'").first() %>
+						<% fc = Comment.where("product_id = ? and order_id = ? and user_id = ?", l.product_id, @order.id, session[:user_id]).first() %>
 						<% if fc %>
-							<%= link_to 'Edit Comment', edit_comment_path(fc) %>
+							<%= link_to t('.editcomment'), edit_comment_path(fc) %>
 						<% else %>
-							<%= link_to 'Comment', new_comment_path(:product_id => l.product_id, :order_id =>  @order.id) %>
+							<%= link_to t('.comment'), new_comment_path(:product_id => l.product_id, :order_id =>  @order.id) %>
 						<% end %> 
 					</td>
 				<% end %>
@@ -58,8 +58,8 @@
 	</div>
 </div>
 <div>
-	<h3>Total:<span class="total_price"><%= number_to_currency(@order.total_price) %></span></h3>
+	<h3><%= t('.total') %>:<span class="total_price"><%= number_to_currency(@order.total_price) %></span></h3>
 </div>
 <% if session[:user_type] == 'admin' %>
-	<%= link_to 'Edit', edit_order_path(@order) %> |
+	<%= link_to t('.edit'), edit_order_path(@order) %> |
 <% end %>

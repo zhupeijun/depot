@@ -21,7 +21,7 @@ class CommentsController < ApplicationController
 
     if order 
       if order.customer_user_id == session[:user_id] and order.status == 'Accepted' 
-        if Comment.where("product_id = '#{params[:product_id]}' and order_id = '#{params[:order_id]}'").first()
+        if Comment.where("product_id = ? and order_id = ?", params[:product_id], params[:order_id]).first()
           @error = "You have commented!" 
         else 
           if order.line_items.find_by_product_id(params[:product_id]) == nil

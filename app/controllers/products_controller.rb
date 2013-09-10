@@ -22,7 +22,7 @@ class ProductsController < ApplicationController
 	# GET /products/1.json
 	def show
 		@cart = current_cart
-		@comment_list = Comment.where("product_id = #{@product.id}")
+		@comment_list = Comment.where("product_id = ?", @product.id)
 	end
 
 	# GET /products/new

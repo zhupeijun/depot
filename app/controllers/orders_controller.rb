@@ -12,7 +12,7 @@ class OrdersController < ApplicationController
 		if session[:user_type] == 'admin' 
 			selected_orders = Order.all	
 		elsif session[:user_type] = 'user'
-			selected_orders = Order.where("customer_user_id = #{session[:user_id]}")
+			selected_orders = Order.where("customer_user_id = ?", session[:user_id])
 		end
 
 		@orders = nil
